@@ -1,7 +1,11 @@
+# Required in Netlify UI: VITE_API_URL = https://YOUR-APP.up.railway.app
 [build]
   base = "frontend"
   command = "npm run build"
   publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
 
 [[redirects]]
   from = "/*"
