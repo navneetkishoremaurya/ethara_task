@@ -1,7 +1,13 @@
 from __future__ import annotations
 
-import os
+import sys
 from logging.config import fileConfig
+from pathlib import Path
+
+# Render/native deploys may run alembic with a cwd that omits backend/ on PYTHONPATH.
+_BACKEND_ROOT = Path(__file__).resolve().parents[1]
+if str(_BACKEND_ROOT) not in sys.path:
+    sys.path.insert(0, str(_BACKEND_ROOT))
 
 from alembic import context
 from sqlalchemy import engine_from_config, pool

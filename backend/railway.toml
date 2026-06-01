@@ -1,0 +1,10 @@
+# Railway: New Project → Deploy from GitHub → Root Directory = backend
+# Add DATABASE_URL (Neon). No Docker.
+
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+startCommand = "sh scripts/start.sh"
+healthcheckPath = "/health"
+restartPolicyType = "on_failure"
