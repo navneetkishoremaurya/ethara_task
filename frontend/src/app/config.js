@@ -1,10 +1,14 @@
 export function getApiBaseUrl() {
-  const fromWindow = globalThis?.window?.__APP_CONFIG__?.API_URL;
-  const fromVite = import.meta?.env?.VITE_API_URL;
-  const API_URL = import.meta.env.VITE_API_URL;
-  // Prefer build-time env (Netlify/Vercel) over runtime config.js defaults.
-  const raw = (fromVite || fromWindow || "/api").trim();
-  // allow relative base like "/api"
-  const normalized = raw.startsWith("http") ? raw.replace(/\/+$/, "") : raw.replace(/\/+$/, "");
-  return normalized;
+  const fromVite = import.meta.env.VITE_API_URL?.trim();
+  const fromWindow = globalThis?.window?.__APP_CONFIG__?.API_URL?.trim();
+  const raw = fromVite || fromWindow || "";
+
+  if (!raw) {
+    console.error(
+      "API URL missing. On Netlify set VITE_API_URL to your Railway URL, then redeploy."
+    );
+    return "/api";
+  }
+
+  return raw.startsWith("http") ? raw.replace(/\/+$/, "") : raw.replace(/\/+$/, "");
 }

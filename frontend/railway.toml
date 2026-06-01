@@ -1,0 +1,9 @@
+# Railway: New Service → same repo → Root Directory = frontend
+# Set VITE_API_URL to your backend Railway URL before deploy.
+
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+startCommand = "npm run start"
+restartPolicyType = "on_failure"
