@@ -36,8 +36,10 @@ services:
   frontend:
     build:
       context: ./frontend
+      dockerfile: Dockerfile.compose
     environment:
       API_URL: ${FRONTEND_API_URL:-/api}
+      API_PROXY_TARGET: http://backend:8000
     depends_on:
       - backend
     ports:

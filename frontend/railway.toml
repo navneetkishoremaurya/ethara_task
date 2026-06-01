@@ -1,5 +1,5 @@
-# Railway: New Service → same repo → Root Directory = frontend
-# Set VITE_API_URL to your backend Railway URL before deploy.
+# Railway: uses Nixpacks (no Dockerfile in this folder).
+# docker-compose uses Dockerfile.compose instead.
 
 [build]
 builder = "NIXPACKS"
